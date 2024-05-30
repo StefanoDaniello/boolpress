@@ -1,12 +1,24 @@
 @extends('layouts.app')
 @section('content')
-<ul>
-    @foreach ($posts as $post)
-        <h6>Title</h6>
-        <li>{{ $post->title }}</li>
-        <h6>Content</h6>
-        <li>{{ $post->content }}</li>
-    @endforeach
-</ul>
+<div class="container mt-5">
+    <table  class="table table-dark table-striped table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($posts as $post)
+            <tr>
+                <td>{{ $post->title }}</td>
+                <td>{{ $post->content }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+
 
 @endSection
