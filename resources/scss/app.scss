@@ -8,3 +8,7 @@ $fa-font-path: "../webfonts" !default;
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 
 @import '~bootstrap/scss/bootstrap';
+
+ul{
+    list-style-type: none;
+}
