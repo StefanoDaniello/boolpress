@@ -1,24 +1,55 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+@section('title', 'Posts')
+
 @section('content')
-<div class="container mt-5 rounded-3 overflow-auto bg-warning">
-    <table  class="table table-dark table-striped table-bordered mt-3 ">
-        <thead class="text-center">
+<section>
+    @if(session()->has('message'))
+    <div class="alert alert-success">{{session()->get('message')}}</div>
+    @endif
+    <div class="d-flex justify-content-between align-items-center py-4">
+        <h1>Posts</h1>
+        <a href="{{route('admin.posts.create')}}" class="btn btn-primary">Crea nuovo post</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <th>Title</th>
-                <th>Content</th>
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Slug</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Update At</th>
+              <th scope="col">Action</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             @foreach ($posts as $post)
             <tr>
-                <td>{{ $post->title }}</td>
-                <td>{{ $post->content }}</td>
-            </tr>
+                <td>{{$post->id}}</td>
+                <td>{{$post->title}}</td>
+                <td>{{$post->slug}}</td>
+                <td>{{$post->created_at}}</td>
+                <td>{{$post->updated_at}}</td>
+                <td>
+                    <a href="{{route('admin.posts.show', $post->slug)}}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{route('admin.posts.edit', $post->slug)}}"><i class="fa-solid fa-pen"></i></a>
+                    <form action="{{route('admin.posts.destroy', $post->slug)}}" method="POST" class="d-inline-block">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="delete-button border-0 bg-transparent"  data-item-title="{{ $post->title }}">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+
+                    </form>
+
+
+                </td>
+              </tr>
             @endforeach
-        </tbody>
-    </table>
-</div>
 
 
-
-@endSection
+          </tbody>
+      </table>
+</section>
+@include('partials.modal-delete')
+@endsection
