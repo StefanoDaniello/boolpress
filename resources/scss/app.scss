@@ -15,6 +15,9 @@ ul{
 a{
     text-decoration: none;
 }
+.none-xl{
+    display: none;
+}
 #admin{
     height: 100vh;
     overflow: hidden;
@@ -47,4 +50,24 @@ a{
             z-index: 100;
         }
     }
+     
+    @media screen and (max-width: 992px) {
+        #sidebar{
+            width: 70px;
+
+            span{
+                display: none;
+            }
+            #big-logo{
+                display: flex;
+                justify-content: center;
+                margin-right: 10px;
+            }
+        }
+        #wrapper{
+            width: calc(100% - 70px);
+        }
+    }
+
+
 }

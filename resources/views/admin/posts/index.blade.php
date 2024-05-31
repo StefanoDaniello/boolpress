@@ -14,9 +14,9 @@
     <table class="table table-striped">
         <thead>
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col" class="d-none d-lg-table-cell">Id</th>
               <th scope="col">Title</th>
-              <th scope="col">Slug</th>
+              <th scope="col" class="d-none d-xl-table-cell">Slug</th>
               <th scope="col">Created At</th>
               <th scope="col">Update At</th>
               <th scope="col">Action</th>
@@ -25,9 +25,9 @@
           <tbody>
             @foreach ($posts as $post)
             <tr>
-                <td>{{$post->id}}</td>
+                <td class="d-none d-lg-table-cell">{{$post->id}}</td>
                 <td>{{$post->title}}</td>
-                <td>{{$post->slug}}</td>
+                <td class="d-none d-xl-table-cell">{{$post->slug}}</td>
                 <td>{{$post->created_at}}</td>
                 <td>{{$post->updated_at}}</td>
                 <td>
