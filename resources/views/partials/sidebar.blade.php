@@ -9,6 +9,5 @@
       <li class="nav-item">
         <a class="nav-link   {{Route::currentRouteName() == 'admin.posts.index' ? 'active' : ''}}" href="{{route('admin.posts.index')}}"> <i class="fa-solid fa-newspaper fa-lg fa-fw"></i>Posts</a>
       </li>
-
     </ul>
   </nav>
