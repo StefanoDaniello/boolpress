@@ -14,11 +14,20 @@
       </li>
       <li class="nav-item">
         <a class="nav-link   {{Route::currentRouteName() == 'admin.posts.index' ? 'active' : ''}}" href="{{route('admin.posts.index')}}"> <i class="fa-solid fa-newspaper fa-lg fa-fw"></i>
-          <span> Posts</span></a>
+          <span> Posts</span>
+        </a>
       </li>
-    <details>
-      <summary>Other Pages</summary>
-        <ul>
+
+      <div class="nav-item collapsed" id="other-pages" data-bs-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+        <a class="nav-item ">
+          <span class="menu-title">Pages</span>
+          <i class="fa fa-angle-left menu-arrow"></i>
+          <i class="fa fa-th menu-icon"></i>
+        </a>
+      </div>
+     
+      <div class="collapse" id="page-layouts" style="">
+        <ul class="nav flex-column sub-menu">
           <li class="nav-item">
             <a class="nav-link"><i class="fa-solid fa-tags fa-lg fa-fw"></i>
               <span> Tags</span></a>
@@ -27,6 +36,7 @@
             <a class="nav-link "><i class="fa-solid fa-list fa-lg fa-fw"></i>
               <span> Categories</span></a>
         </ul>
-      </details>
+      </div>
+      
     </ul>
 </nav>

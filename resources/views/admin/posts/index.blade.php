@@ -39,15 +39,10 @@
                       <button type="submit" class="delete-button border-0 bg-transparent"  data-item-title="{{ $post->title }}">
                         <i class="fa-solid fa-trash"></i>
                       </button>
-
                     </form>
-
-
                 </td>
               </tr>
             @endforeach
-
-
           </tbody>
       </table>
 </section>

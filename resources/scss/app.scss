@@ -14,9 +14,19 @@ ul{
 }
 a{
     text-decoration: none;
+    color: gray;
 }
 .none-xl{
     display: none;
+}
+.fa-eye:hover{
+    color: blue;
+}
+.fa-pen:hover{
+    color: green;
+}
+.fa-trash:hover{
+    color: red;
 }
 #admin{
     height: 100vh;
@@ -31,10 +41,29 @@ a{
         a{
             color: white;
         }
-        li:hover,
-        summary:hover{
+        li:hover {
             background-color: rgba(160, 160, 160, 0.37);
         }
+        .active{
+            background-color: rgba(160, 160, 160, 0.37);
+        }
+        #other-pages{
+           padding: 10px 0 10px 20px;
+           position: relative;
+           .menu-arrow{
+               position: absolute;
+               right: 15px;
+           }
+           .menu-icon{
+                position: absolute;           
+                right: 35px;
+            }
+            .rotate {
+                transform: rotate(-90deg); /* Ad esempio, ruota di 90 gradi */
+                transition: transform 0.3s ease-in-out; /* Aggiungi una transizione per un effetto più fluido */
+            }
+       }
+        
     }
     #wrapper{
         background-color: lightgray;

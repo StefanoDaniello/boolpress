@@ -30,3 +30,9 @@ deleteSubmitButtons.forEach((button) => {
         });
     });
 });
+
+const arrow_left = document.querySelector(".fa-angle-left"); 
+const other_pages = document.getElementById("other-pages");
+other_pages.addEventListener("click", () => {
+    arrow_left.classList.toggle("rotate");
+});
