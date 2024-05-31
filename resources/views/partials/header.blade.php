@@ -33,10 +33,13 @@
                 @csrf
             </form>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="userProfile" role="button">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                <img class="img-profile rounded-circle" src="/images/user.webp">
+          {{-- <li class="nav-item "> --}}
+            <a class="nav-link d-flex align-items-center" href="#" id="userProfile" role="button">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
+              {{-- <img class="img-profile rounded-circle" src="/images/user.webp"> --}}
+              <div id="user-image" class="img-profile rounded-circle">
+                <span>{{Auth::user()->name[0]}}</span>
+              </div>
             </a>
           </ul>
         </li>
