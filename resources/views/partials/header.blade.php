@@ -1,10 +1,16 @@
 <header class="shadow-sm">
     <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white">
     <!-- Container wrapper -->
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+
+      <div class=" none-1" id="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search"/>
+      </div>
 
       <!-- Right links -->
-      <ul class="navbar-nav ms-auto d-flex flex-row">
+      <ul class="navbar-nav ms-auto d-flex flex-row ">
 
         <li class="nav-item">
           <a
@@ -16,9 +22,7 @@
 
         </li>
 
-        <!-- Icon -->
-
-        <!-- Icon -->
+       
         <li class="nav-item me-3 me-lg-0">
           <a class="nav-link" href="#">
             <i class="fab fa-github"></i>
@@ -48,3 +52,28 @@
   </nav>
 
 </header>
+
+
+
+<style lang="scss" scoped>
+    #search-container{
+     position: relative;
+      input{
+          padding-left:25px;
+          border: none;
+          border-bottom: 2px solid #0C7CEC;
+          outline: none;
+          width: calc(100% - 25px);
+          font-size: 15px;
+          background-color: transparent;
+      }
+      i{
+          position: absolute;
+          top: 2px;
+          left: -8px;
+          font-size: 18px;
+          color: black;
+      }
+  }
+ 
+</style>

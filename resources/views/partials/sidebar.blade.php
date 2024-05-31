@@ -26,7 +26,7 @@
         </a>
       </div>
      
-      <div class="collapse" id="page-layouts" style="">
+      <div class="collapse" id="page-layouts" >
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
             <a class="nav-link"><i class="fa-solid fa-tags fa-lg fa-fw"></i>
