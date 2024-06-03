@@ -30,8 +30,8 @@
                 <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">
                 {{ $post->content }}
               </textarea>
-                @if($errors->has('description'))
-                    <div class ="alert alert-danger">{{$errors->first('description')}}</div>
+                @if($errors->has('content'))
+                    <div class ="alert alert-danger">{{$errors->first('content')}}</div>
                 @endif
             </div>
             <div class="mb-3">

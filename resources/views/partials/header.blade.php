@@ -4,7 +4,7 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
 
-      <div class=" none-1" id="search-container">
+      <div class=" none-1 mx-3" id="search-container">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search"/>
       </div>
@@ -19,7 +19,6 @@
             <i class="fas fa-bell"></i>
             <span class="badge rounded-pill badge-notification bg-danger">1</span>
           </a>
-
         </li>
 
        
@@ -75,5 +74,4 @@
           color: black;
       }
   }
- 
 </style>

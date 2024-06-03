@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-
+// serve per eseguire le query 
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(3);
         //dd($posts);
         return view('admin.posts.index', compact('posts'));
     }
@@ -65,7 +65,12 @@ class PostController extends Controller
     {
         $form_data= $this->validation($request->all());
         $form_data['slug'] = Post::generateSlug($form_data['title']);
+        //query da eseguire 
+        // DB::enableQueryLog();
         $post->update($form_data);
+        //la mettiamo in una variabile per vedere la query
+        // $query = DB::getQueryLog();
+        // dd($query);
         return redirect()->route('admin.posts.index', $post->slug);
     }
 
@@ -86,6 +91,7 @@ class PostController extends Controller
         ],
         [
             'title.required' => 'Il titolo è obbligatorio.',
+            'title.unique' => 'Questo titolo esiste già.',
             'title.max' => 'Il titolo non può superare i :200 caratteri.',
             'title.min' => 'Il titolo deve essere di almeno : 3 caratteri.',
             'image.max' => 'La lunghezza massima è di  :255 caratteri.',
