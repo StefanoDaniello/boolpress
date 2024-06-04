@@ -58,7 +58,7 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post'));
     }
 
-    /**
+    /**o
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
