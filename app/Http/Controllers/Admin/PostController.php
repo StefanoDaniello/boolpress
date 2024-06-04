@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
-// serve per eseguire le query 
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -16,6 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        //$posts = Post::all();
         $posts = Post::paginate(3);
         //dd($posts);
         return view('admin.posts.index', compact('posts'));
@@ -32,10 +37,27 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $form_data= $this->validation($request->all());
+        $form_data = $request->validated();
         $form_data['slug'] = Post::generateSlug($form_data['title']);
+        if ($request->hasFile('image')) {
+            //dd($request->image);
+            $name = $request->image->getClientOriginalName(); //o il nome che volete dare al file
+            // $path = $request->file('image')->storeAs(
+            //     'post_images',
+            //      $name
+            // );
+
+            //dd($name);
+            $path = Storage::putFileAs('post_images', $request->image, $name);
+            //$path = Storage::put('post_images', $request->image);
+            $form_data['image'] = $path;
+        }
+        //dd($path);// post_images/nomefile.png
+
+
+
         $newPost = Post::create($form_data);
         return redirect()->route('admin.posts.show', $newPost->slug);
 
@@ -58,20 +80,29 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post'));
     }
 
-    /**o
+    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $form_data= $this->validation($request->all());
-        $form_data['slug'] = Post::generateSlug($form_data['title']);
-        //query da eseguire 
+        $form_data = $request->all();
+        if ($post->title !== $form_data['title']) {
+            $form_data['slug'] = Post::generateSlug($form_data['title']);
+        }
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $name = $request->image->getClientOriginalName();
+            //dd($name);
+            $path = Storage::putFileAs('post_images', $request->image, $name);
+            $form_data['image'] = $path;
+        }
         // DB::enableQueryLog();
         $post->update($form_data);
-        //la mettiamo in una variabile per vedere la query
         // $query = DB::getQueryLog();
         // dd($query);
-        return redirect()->route('admin.posts.index', $post->slug);
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -79,25 +110,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
         $post->delete();
         return redirect()->route('admin.posts.index')->with('message', $post->title . ' è stato eliminato');
-    }
-
-    public function validation($data){
-        $validator = \Validator::make($data, [
-            'title' => 'required|max:200|min:3|unique:posts',
-            'image' => 'nullable|max:255',
-            'content' => 'required|max:255',
-        ],
-        [
-            'title.required' => 'Il titolo è obbligatorio.',
-            'title.unique' => 'Questo titolo esiste già.',
-            'title.max' => 'Il titolo non può superare i :200 caratteri.',
-            'title.min' => 'Il titolo deve essere di almeno : 3 caratteri.',
-            'image.max' => 'La lunghezza massima è di  :255 caratteri.',
-            'content.required' => 'Il contenuto è obbligatorio.',
-            'content.max' => 'Il contenuto non è piu di :255 caratteri.',
-        ])->validate();
-        return $validator;
     }
 }
