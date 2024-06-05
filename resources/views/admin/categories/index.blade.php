@@ -47,6 +47,6 @@
           </tbody>
       </table>
 </section>
-{{ $categories->links('vendor.pagination.bootstrap-5')}}
+{{-- {{ $categories->links('vendor.pagination.bootstrap-5')}} --}}
 @include('partials.modal-delete')
 @endsection

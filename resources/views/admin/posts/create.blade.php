@@ -36,6 +36,8 @@
                     <div class ="alert alert-danger">{{$errors->first('content')}}</div>
                 @enderror
             </div>
+            {{-- category form  --}}
+            
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary text-white">Crea</button>
                 <button type="reset"  class="btn btn-danger mx-4">Svuota campi</button>
