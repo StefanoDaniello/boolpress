@@ -11,7 +11,7 @@ use App\Http\Requests\UpdatePostRequest;
 
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -20,8 +20,10 @@ class PostController extends Controller
      */
     public function index()
     {
+        $id= Auth::id();
         //$posts = Post::all();
-        $posts = Post::paginate(3);
+        // $posts = Post::paginate(3);
+        $posts = Post::where('user_id', $id)->paginate(3);
         //dd($posts);
         return view('admin.posts.index', compact('posts'));
     }
@@ -41,6 +43,7 @@ class PostController extends Controller
     {
         $form_data = $request->validated();
         $form_data['slug'] = Post::generateSlug($form_data['title']);
+        $from_data['user_id'] = Auth::id();
         if ($request->hasFile('image')) {
             //dd($request->image);
             $name = $request->image->getClientOriginalName(); //o il nome che volete dare al file

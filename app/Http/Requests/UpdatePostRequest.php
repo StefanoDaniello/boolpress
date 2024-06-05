@@ -30,7 +30,7 @@ class UpdatePostRequest extends FormRequest
                 Rule::unique('posts')->ignore($this->post->id),
             ],
             'image' => 'nullable|max:255',
-            'content' => 'nullable'
+            'content' => 'nullable|max:255'
         ];
     }
 
@@ -41,7 +41,8 @@ class UpdatePostRequest extends FormRequest
             'title.unique:posts' => 'Questo titolo esiste già!',
             'title.max' => 'Il titolo deve essere lungo massimo :max caratteri!',
             'title.min' => 'Il titolo deve essere lungo almeno :min caratteri!',
-            'image.max' => 'La URL deve essere lungo massimo :max caratteri!'
+            'image.max' => 'La URL deve essere lungo massimo :max caratteri!',
+            'content.max' => 'Il contenuto deve essere lungo massimo :max caratteri!'
         ];
     }
 }

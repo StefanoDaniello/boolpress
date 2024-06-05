@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use  App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +28,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('posts', PostController::class)->parameters(['posts' => 'post:slug']);;
+    Route::resource('posts', PostController::class)->parameters(['posts' => 'post:slug']);
+    Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
 });
 
 Route::middleware('auth')->group(function () {

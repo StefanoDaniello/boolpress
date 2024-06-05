@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class Post extends Model
 {
@@ -14,6 +15,7 @@ class Post extends Model
         'image',
         'content',
         'slug',
+        'user_id'
     ];
     public static function generateSlug($title)
     {
@@ -30,5 +32,8 @@ class Post extends Model
             $count++;
         }
         return $slug;
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
